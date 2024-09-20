@@ -1,4 +1,4 @@
-# SVEvote: Secure and Verifiable Voting System
+# SVEvote: Secure and Verifiable E-Voting System
 This repository contains a basic implementation of a secure voting system using secret sharing techniques. The code is written using the MP-SPDZ library, which provides secure multi-party computation (MPC) functionality.
 ## Overview
 The system aims to ensure the privacy of voter choices while enabling a verifiable and accurate count of votes. The core functionality includes:
