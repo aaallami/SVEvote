@@ -1,0 +1,113 @@
+p=program.prime 
+a=[21990232883]
+b=[21990232]
+n_threads=4
+n=2
+m=8
+def reg(ID):
+    k=sint.get_random()
+    RID=ID+k
+    return RID, k
+
+def voter_validate(RID, cID, k):
+    c=sint.get_random()
+    _c=RID+c
+    tau=sint(_c.reveal()-cID)
+    d=tau-k-c
+    r=sint.get_random()
+    e=d*r
+    if_then(e.reveal()==0)
+    print_ln('passes')
+    else_then()
+    print_ln('Not passes')
+    end_if()
+
+def vcst(RID, cID, k, m):
+    voter_validate(RID, cID, k)
+    c=sint.Array(m)
+    a=sint.Array(m)
+    #for i in range(m):
+    #    c[i]=0
+    c[0]=sint(1)    # for simplisity assum that the voters voted for the first candidate
+    C=sint(0)
+    for i in range(m):
+        C+=c[i]
+    e=C-1
+    r=sint.get_random()
+    d=e*r
+    tag=sint(0)
+    print_ln('e=%s ', e.reveal())
+    if_then(d.reveal()==0)
+    tag+=1
+    print_ln('here')
+    A=sint(0)
+    for i in range(m):
+        a[i]=sint.get_random()
+        A+=a[i]
+        d=C*A
+    end_if()
+    
+    return C, a, d
+
+
+'''
+def vverify(cd):
+    c=sint.get_random()
+    e=c+d
+    C=sint(0)
+    A=sint(0)
+    for i in range(m):
+        C+=c[i]
+        A+=a[i]
+        f=C*A
+        g=e-f
+    h=e-g.reveal()
+    if_then(h==0)
+    print_ln('passes')
+    else_then()
+    print_ln('Not passes')
+    end_if()
+
+
+def VAgg():
+    for j in range(m):
+        @for_range_opt_multithread(n_threads, n)
+        def _(i):
+            c[j]=c[i][j]
+        valid+=tag[i]
+        invalid+=1-tag
+        total=valid+invalid
+        t1=total-n
+        for i in range(m):
+            c+=c[j]
+        t2=valid-c
+    t=t1+t2
+    r=sint.ramdom()
+    _t=t*r 
+    if_then(_t.reveal()==0)
+    print_ln('check passes')
+    else_then()
+    for i in range(m):
+        c[j].reveal()
+    print_ln('check does not pass')
+    end_if()
+'''
+
+"""
+    Main function
+"""
+sID=sint.Array(n)
+cID=cint.Array(n)
+k=sint.Array(n)
+RID=sint.Array(n)
+C=sint.Array(n)
+d=sint.Array(n)
+a=sint.Matrix(n, m)
+@for_range_opt_multithread(n_threads, n)
+def _(i):
+    sID[i]=sint(i)
+    cID[i]=cint(i)
+    RID[i], k[i]=reg(sID[i])
+    voter_validate(RID[i], cID[i], k[i])
+    _C, _a, _d=vcst(RID, cID, k, m)
+    #d[i]=_d
