@@ -22,10 +22,7 @@ Code Structure
 - Incomplete VAgg() Function: The code currently lacks the full implementation of the vote aggregation function (VAgg()) which would need to securely combine the shares of votes and reveal the final count.
 - Simple Voting Model: The current implementation assumes a simple scenario with only one candidate and the voters casting their vote for the first candidate.
 Performance Optimization: The code can be further optimized for speed and efficiency, especially for handling large numbers of voters and candidates.
-### Future Work
-- Complete VAgg() implementation: Finish the vote aggregation function to securely combine the votes and reveal the final count.
-- Support for Multiple Candidates: Extend the system to handle multiple candidates and allow voters to choose among them.
-- Performance Optimization: Optimize the code for efficiency and scalability to handle large numbers of voters and votes.
+
 # Installation
 
 Install the required MP-SPDZ library:
